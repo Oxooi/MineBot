@@ -67,7 +67,7 @@ class FindeMe {
                 this.bot.chat(`Je suis à ${Math.floor(diffDistance)} blocs de toi.`)
                 break;
             case diffDistance > 2:
-                this.bot.chat(`Je suis à ${Math.floor(diffDistance) } blocs de toi.`)
+                this.bot.chat(`Je suis à ${Math.floor(diffDistance)} blocs de toi.`)
                 break;
             default:
                 this.bot.chat(`Je suis à côté de toi.`)
