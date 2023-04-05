@@ -19,7 +19,3 @@ This bot requires the following dependencies:
 - [mineflayer](https://www.npmjs.com/package/mineflayer) (`^4.8.1`)
 - [mineflayer-collectblock](https://www.npmjs.com/package/mineflayer-collectblock) (`^1.4.1`)
 - [mineflayer-pathfinder](https://www.npmjs.com/package/mineflayer-pathfinder) (`^2.4.2`)
-
-### License
-
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
