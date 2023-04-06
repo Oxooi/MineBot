@@ -2,6 +2,7 @@ const mineflayer = require('mineflayer');
 const mcData = require('minecraft-data')('1.19');
 const { FindeMe } = require('./parts/pathfinding/findeme.js');
 const { Work } = require('./parts/pathfinding/work.js');
+const { BotInventory } = require('./parts/inventory/inventory.js');
 const config = require('./config');
 // Create a Minecraft bot with the specified IP address and username
 const bot = mineflayer.createBot(config);
@@ -9,6 +10,7 @@ const bot = mineflayer.createBot(config);
 // Create a FinderMe instance to search for players
 const findMe = new FindeMe(bot, mcData);
 const work = new Work(bot);
+const botInventory = new BotInventory(bot);
 
 // Listen for chat messages and handle commands
 bot.on('chat', (username, message) => {
@@ -51,6 +53,9 @@ bot.on('chat', (username, message) => {
         case 'distance':
             findMe.getDistance(config.playername);
             break;
+
+        case 'inv':
+            botInventory.displayInv(bot);
 
         // If the command is not recognized, do nothing
         default:
