@@ -25,6 +25,10 @@ class FindeMe {
         this.bot.pathfinder.setGoal(goal, true)
     }
 
+    stopFollow() {
+        this.bot.pathfinder.setGoal(null)
+    }
+
     getCoords() {
 
         let posX = this.bot.entity.position.x.toFixed(2)
