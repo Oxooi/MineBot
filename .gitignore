@@ -3,3 +3,4 @@ parts/discord/settings.js
 package-lock.json
 config.js
 parts/pathfinding/Untitled-1.js
+node_modules
