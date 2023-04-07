@@ -3,14 +3,19 @@ const mcData = require('minecraft-data')('1.19');
 const { FindeMe } = require('./parts/pathfinding/findeme.js');
 const { Work } = require('./parts/pathfinding/work.js');
 const { BotInventory } = require('./parts/inventory/inventory.js');
+const { Waypoints } = require('./parts/pathfinding/waypoints.js');
 const config = require('./config');
 const fs = require('fs');
+const yaml = require('js-yaml');
+const { log } = require('console');
+
 // Create a Minecraft bot with the specified IP address and username
 const bot = mineflayer.createBot(config);
 
 // Create a FinderMe instance to search for players
 const findMe = new FindeMe(bot, mcData);
 const work = new Work(bot);
+const waypoints = new Waypoints(bot);
 const botInventory = new BotInventory(bot);
 
 // Listen for bot connection
@@ -21,22 +26,31 @@ bot.on('spawn', () => {
     const fileName = (`${botName}.yml`)
     const filePath = (`./bots/${fileName}`)
 
-    // If the file don't exists,  create it
-    if (!fs.existsSync(filePath)) {
-        // Create a new file
-        fs.appendFile(filePath, '', function (err) {
-            if (err) throw err;
-            console.log(`File ${fileName} created`);
-        });
-    } else {
-        // If the file exists, log it
-        console.log(`File ${fileName} loaded`);
+    try {
+        // If the file don't exists,  create it
+        if (!fs.existsSync(filePath)) {
+            // Create a new file
+            fs.appendFile(filePath, '', function (err) {
+                if (err) throw err;
+                console.log(`File ${fileName} created`);
+            });
+        } else {
+            // If the file exists, log it
+            console.log(`File ${fileName} loaded`);
+        }
+    } catch (error) {
+        console.error(error)
     }
 })
 
 
 // Listen for chat messages and handle commands
 bot.on('chat', (username, message) => {
+
+    // Create a config file for the bot
+    const botName = bot.username
+    const fileName = (`${botName}.yml`)
+    const filePath = (`./bots/${fileName}`)
 
     // Split the chat message into arguments
     const args = message.split(' ');
@@ -77,8 +91,17 @@ bot.on('chat', (username, message) => {
             findMe.getDistance(config.playername);
             break;
 
+        case 'sethome':
+            waypoints.setHome(filePath);
+            break;
+
+        case 'gethome':
+            waypoints.getHome(filePath);
+            break;
+
         case 'inv':
             botInventory.displayInv(bot);
+            break;
 
         // If the command is not recognized, do nothing
         default:
