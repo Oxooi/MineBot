@@ -21,3 +21,4 @@ This bot requires the following dependencies:
 - [mineflayer-pathfinder](https://www.npmjs.com/package/mineflayer-pathfinder) (`^2.4.2`)
 - [mineflayer-web-inventory](https://www.npmjs.com/package/mineflayer-web-inventory) (`^1.8.4`)
 - [vec-3](https://www.npmjs.com/package/vec3) (`^0.1.8`)
+- [js-yaml](https://www.npmjs.com/package/js-yaml) (`^4.1.0`)
