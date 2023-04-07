@@ -4,6 +4,7 @@ const GoalFollow = goals.GoalFollow
 
 
 class FindeMe {
+    
     constructor(bot) {
         this.bot = bot
         bot.loadPlugin(pathfinder)
