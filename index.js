@@ -18,12 +18,13 @@ bot.on('spawn', () => {
 
     // Create a config file for the bot
     const botName = bot.username
-    const fileName = (`./bots/${botName}.yml`)
+    const fileName = (`${botName}.yml`)
+    const filePath = (`./bots/${fileName}`)
 
     // If the file don't exists,  create it
-    if (!fs.existsSync(fileName)) {
+    if (!fs.existsSync(filePath)) {
         // Create a new file
-        fs.appendFile(fileName, '', function (err) {
+        fs.appendFile(filePath, '', function (err) {
             if (err) throw err;
             console.log(`File ${fileName} created`);
         });
