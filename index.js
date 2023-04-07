@@ -4,6 +4,7 @@ const { FindeMe } = require('./parts/pathfinding/findeme.js');
 const { Work } = require('./parts/pathfinding/work.js');
 const { BotInventory } = require('./parts/inventory/inventory.js');
 const config = require('./config');
+const fs = require('fs');
 // Create a Minecraft bot with the specified IP address and username
 const bot = mineflayer.createBot(config);
 
@@ -11,6 +12,27 @@ const bot = mineflayer.createBot(config);
 const findMe = new FindeMe(bot, mcData);
 const work = new Work(bot);
 const botInventory = new BotInventory(bot);
+
+// Listen for bot connection
+bot.on('spawn', () => {
+
+    // Create a config file for the bot
+    const botName = bot.username
+    const fileName = (`./bots/${botName}.yml`)
+
+    // If the file don't exists,  create it
+    if (!fs.existsSync(fileName)) {
+        // Create a new file
+        fs.appendFile(fileName, '', function (err) {
+            if (err) throw err;
+            console.log(`File ${fileName} created`);
+        });
+    } else {
+        // If the file exists, log it
+        console.log(`File ${fileName} loaded`);
+    }
+})
+
 
 // Listen for chat messages and handle commands
 bot.on('chat', (username, message) => {

@@ -3,3 +3,4 @@ parts/discord/settings.js
 package-lock.json
 config.js
 node_modules
+bots/ImaBoot.yml
