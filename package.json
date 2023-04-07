@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^14.9.0",
+    "js-yaml": "^4.1.0",
     "minecraft-data": "^3.31.0",
     "mineflayer": "^4.8.1",
     "mineflayer-collectblock": "^1.4.1",
